@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import styles from "./page.module.css";
 import HomeBanner2 from "@/components/HomeBanner2/HomeBanner2";
