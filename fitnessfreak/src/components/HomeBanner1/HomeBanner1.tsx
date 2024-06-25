@@ -109,7 +109,11 @@ const HomeBanner1 = () => {
            
 
           </CircularProgress>
-          <button>Show Report <AiOutlineEye /></button>
+          <button
+               onClick={() => {
+                window.location.href = `/report/${item.name}`
+              }}
+              >Show Report <AiOutlineEye /></button>
           </div>
           )
         })
