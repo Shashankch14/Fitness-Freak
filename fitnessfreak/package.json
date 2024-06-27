@@ -19,6 +19,7 @@
     "@mui/x-charts": "^6.19.8",
     "@mui/x-date-pickers": "^6.20.2",
     "dayjs": "^1.11.11",
+    "mongodb": "^6.7.0",
     "next": "latest",
     "react": "latest",
     "react-datepicker": "^7.1.0",
