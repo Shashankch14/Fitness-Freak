@@ -6,38 +6,60 @@ import './Navbar.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import AuthPopup from '../AuthPopup/AuthPopup'
-
 const Navbar = () => {
-  
     const [isloggedin, setIsloggedin] = React.useState<boolean>(false)
 
     const [showpopup, setShowpopup] = React.useState<boolean>(false)
+    const checklogin = async () => {
+        fetch(process.env.NEXT_PUBLIC_BACKEND_API + '/auth/checklogin', {
+            method: 'POST',
+            credentials: 'include',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.ok) {
+                    setIsloggedin(true)
+                }
+                else{
+                    setIsloggedin(false)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
-  return (
-    
-    <nav>
-        <Image src={logo} alt="fitnessLogo "/>
-        <Link href="/" >Home</Link>
-        <Link href="/about">About</Link>
-        <Link href="/profile" ><IoIosBody /></Link>
-        {
-          isloggedin ?
-          <button>Sign Out</button>
-          :
-          <button
-          onClick={()=>{
-            setShowpopup(true)
-          }}
-          >Sign in</button>
 
-        }
-        {
-          showpopup && <AuthPopup setShowpopup={setShowpopup} />
-        }
+    React.useEffect(() => {
+        checklogin()
+    }, [showpopup])
 
-    </nav>
-    
-  )
+    return (
+        <nav>
+            <Image src={logo} alt="Logo" />
+            <Link href='/'>Home</Link>
+            <Link href='/about'>About</Link>
+            <Link href='/profile'><IoIosBody /></Link>
+            {
+                isloggedin ?
+                    <button>Logout</button>
+                    :
+                    <button
+                        onClick={() => {
+                            setShowpopup(true)
+                        }}
+                    >Login</button>
+
+
+
+            }
+
+            {
+                showpopup && <AuthPopup setShowpopup={setShowpopup} />
+            }
+        </nav>
+    )
 }
 
 export default Navbar

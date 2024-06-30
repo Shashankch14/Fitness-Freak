@@ -115,6 +115,7 @@ router.post('/getcalorieintakebylimit', authTokenHandler, async (req, res) => {
         let date = new Date();
         let currentDate = new Date(date.setDate(date.getDate() - parseInt(limit))).getTime();
         // 1678910
+        // Converting the limit of day into milliseconds
 
         user.calorieIntake = user.calorieIntake.filter((item) => {
             return new Date(item.date).getTime() >= currentDate;
