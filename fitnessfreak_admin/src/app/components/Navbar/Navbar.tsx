@@ -7,35 +7,35 @@ import logo from './logo.png';
 
 const Navbar = () => {
     const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
-    // const checkAdminAuthentication = async () => {
-    //     try {
-    //         const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_API+'/admin/checklogin', {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             credentials: 'include'
+    const checkAdminAuthentication = async () => {
+        try {
+            const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_API+'/admin/checklogin', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include'
 
-    //         });
-    //         if (response.ok) {
-    //             // Admin is authenticated
-    //             setIsAdminAuthenticated(true);
-    //         } else {
-    //             // Admin is not authenticated
-    //             setIsAdminAuthenticated(false);
+            });
+            if (response.ok) {
+                // Admin is authenticated
+                setIsAdminAuthenticated(true);
+            } else {
+                // Admin is not authenticated
+                setIsAdminAuthenticated(false);
                
-    //         }
-    //     }
-    //     catch (error) {
-    //         console.error('An error occurred during admin authentication check', error);
-    //         setIsAdminAuthenticated(false);
+            }
+        }
+        catch (error) {
+            console.error('An error occurred during admin authentication check', error);
+            setIsAdminAuthenticated(false);
 
-    //     }
-    // }
+        }
+    }
 
-    // useEffect(() => {
-    //     checkAdminAuthentication();
-    // }, []);
+    useEffect(() => {
+        checkAdminAuthentication();
+    }, []);
     return (
         <div className='navbar'>
             <Image src={logo} alt="Logo" width={100} className='logo' />
