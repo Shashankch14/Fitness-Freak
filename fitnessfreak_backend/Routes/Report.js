@@ -180,12 +180,7 @@ router.get('/getreport', authTokenHandler, async (req, res) => {
             goal : goalWeight,
             unit : "kg",
         },
-        {
-            name : "Height",
-            value : height,
-            goal : "",
-            unit : "cm",
-        },
+        
     ]
 
     res.json(createResponse(true, 'Report', tempResponse));
